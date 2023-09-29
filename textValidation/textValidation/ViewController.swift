@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var displayMessage: UILabel!
+    @IBOutlet weak var messageView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,25 +31,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func submitButton(_ sender: Any) {
-        guard usernameInput.text != "" else { return displayMessage.text = "Error, please input valid Username"}
-        
-        guard passwordInput.text != "" else { return displayMessage.text = "Error, please input valid Password"}
-        
+
         let username = usernameInput.text!
         let passWord = passwordInput.text!
         
         if iSEmailValid(username) == false {
-            displayMessage.backgroundColor = UIColor.black
+            messageView.backgroundColor = UIColor.black
             displayMessage.text = "Please enter valid Username"
         } else if passWord.count < 8 {
-            displayMessage.backgroundColor = UIColor.black
+            messageView.backgroundColor = UIColor.black
             displayMessage.text = "Password must be longer"
         } else if (passWord.rangeOfCharacter(from: specialCharacters) != nil)  && (passWord.rangeOfCharacter(from: uppercaseLetters) != nil) && (passWord.rangeOfCharacter(from: lowercaseLetters) != nil) {
-            displayMessage.backgroundColor = UIColor.black
+            messageView.backgroundColor = UIColor.black
             displayMessage.textColor = UIColor.green
             displayMessage.text = "Seccessful Login Complete is done affermative"
         } else {
-            displayMessage.backgroundColor = UIColor.black
+            messageView.backgroundColor = UIColor.black
             displayMessage.text = "Password must contain special character, one uppercase, and one lowercase character"
         }
         
