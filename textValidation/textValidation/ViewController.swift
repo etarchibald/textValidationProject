@@ -17,7 +17,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        messageView.isHidden = true
+        usernameInput.addTarget(self, action: #selector(textFieldDidchange), for: .editingChanged)
+        passwordInput.addTarget(self, action: #selector(textFieldDidchange), for: .editingChanged)
     }
+    
+//    var hiddenDisplayMessage = true
+    
+    @objc func textFieldDidchange(_ textField: UITextField) {
+        messageView.isHidden = true
+    }
+    
     
     let specialCharacters = CharacterSet(["@", ",", ".", "!", "#", "$", "%", "^", "&", "*", "<", ">", "?", "+", "=", "-"])
     let uppercaseLetters = CharacterSet.uppercaseLetters
@@ -32,6 +42,8 @@ class ViewController: UIViewController {
 
     @IBAction func submitButton(_ sender: Any) {
 
+        messageView.isHidden = false
+        
         let username = usernameInput.text!
         let passWord = passwordInput.text!
         
